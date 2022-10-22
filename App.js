@@ -24,15 +24,15 @@ export default function App() {
       `${number1}/${number2} = ${(number1 / number2).toFixed(3)}`,
     ]);
   };
-  const handleError = (number) => {
-    console.log(num);
+  const handleError = (number, index) => {
+
     if (!validateNumber(number) || number == "") {
-      setError1(true);
+      index == 1 ? setError1(true) :  setError2(true);
       setDisableButton(true);
       console.log("run");
       return;
     }
-    setError1(false);
+    index == 1 ? setError1(false) : setError2(false);
     setDisableButton(false);
 
   };
@@ -56,7 +56,7 @@ export default function App() {
                 value={number1}
                 keyboardType="numeric" // only show numberic keyboard so we cannot input string to input field
                 onBlur={() => {
-                  handleError(number1);
+                  handleError(number1, 1);
                 }}
               />
               {error1 && (
@@ -74,7 +74,7 @@ export default function App() {
                 value={number2}
                 keyboardType="numeric"
                 onBlur={() => {
-                  handleError(number2);
+                  handleError(number2, 2);
                 }}
               />
               {error2 && (
